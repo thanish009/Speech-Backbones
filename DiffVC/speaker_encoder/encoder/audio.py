@@ -139,7 +139,7 @@ def trim_long_silences(wav):
         voice_flags.append(vad.is_speech(pcm_wave[window_start * 2:window_end * 2],
                                          sample_rate=sampling_rate))
     voice_flags = np.array(voice_flags)
-    
+    np
     # Smooth the voice detection with a moving average
     def moving_average(array, width):
         array_padded = np.concatenate((np.zeros((width - 1) // 2), array, np.zeros(width // 2)))
@@ -148,7 +148,7 @@ def trim_long_silences(wav):
         return ret[width - 1:] / width
     
     audio_mask = moving_average(voice_flags, vad_moving_average_width)
-    audio_mask = np.round(audio_mask).astype(np.bool)
+    audio_mask = np.round(audio_mask).astype(bool)
     
     # Dilate the voiced regions
     audio_mask = binary_dilation(audio_mask, np.ones(vad_max_silence_length + 1))
